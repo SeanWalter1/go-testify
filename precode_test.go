@@ -12,8 +12,10 @@ import (
 func TestMainHandlerWithValidRequest(t *testing.T) {
 	req, err := http.NewRequest("GET", "/cafe?city=kazan&count=2", nil)
 	responseRecorder := httptest.NewRecorder()
+	
 	handler := http.HandlerFunc(mainHandle)
 	handler.ServeHTTP(responseRecorder, req)
+	
 	require.Equal(t, http.StatusOK, responseRecorder.Code, "ожидался статус ОК")
 	assert.NotEmpty(t, responseRecorder.Body)
 }
